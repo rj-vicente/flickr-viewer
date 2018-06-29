@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppRegistry, TouchableOpacity, Image } from 'react-native';
+import { TouchableOpacity, Image } from 'react-native';
 import AlbumList from './app/components/AlbumList.js';
 import PhotoList from './app/components/PhotoList.js';
 import CommentList from './app/components/CommentList.js';
@@ -8,7 +8,7 @@ import { Router, Scene } from 'react-native-router-flux';
 import { Actions } from 'react-native-router-flux';
 import LocalizedStrings from 'react-localization';
 
-strings = new LocalizedStrings({
+const strings = new LocalizedStrings({
   en: {
     albumsTitle: "Albums",
     photosTitle: "Photos",
@@ -16,7 +16,10 @@ strings = new LocalizedStrings({
     settingsTitle: "Settings",
     langLabel: "Language",
     langName: "English",
-    changeAction: "Change"
+    changeAction: "Change",
+    orderLabel: "Photos order:",
+    orderNameChrono: "Chronological",
+    orderNameAlpha: "Alphabetical"
   },
   sp: {
     albumsTitle: "Álbumes",
@@ -25,9 +28,14 @@ strings = new LocalizedStrings({
     settingsTitle: "Ajustes",
     langLabel: "Lenguaje",
     langName: "Español",
-    changeAction: "Cambiar"
+    changeAction: "Cambiar",
+    orderLabel: "Orden de fotos",
+    orderNameChrono: "Cronológico",
+    orderNameAlpha: "Alfabético"
   }
 })
+
+const order = "chrono";
 
 const App = () => (
   <Router>
@@ -36,15 +44,15 @@ const App = () => (
       navigationBarTitleImage={require('./app/icons/flickr-logo.png')}
       navigationBarTitleImageStyle={{height: 50, width: 50, marginLeft: 10}}
       renderRightButton={() => SettingsButton}>
-      <Scene key="albumList" component={AlbumList} title={strings.albumsTitle} initial={true} onExit={console.log("hello")} />
+      <Scene key="albumList" component={AlbumList} title={strings.albumsTitle} initial={true} />
       <Scene key="photoList" component={PhotoList} title={strings.photosTitle} />
       <Scene key="commentList" component={CommentList} title={strings.commentsTitle} />
-      <Scene key="settingsMenu" component={SettingsMenu} title={strings.settingsTitle} onExit={console.log("hello")} />
+      <Scene key="settingsMenu" component={SettingsMenu} title={strings.settingsTitle} />
     </Scene>
   </Router>
 );
 
-const SettingsButton = <TouchableOpacity onPress={() => Actions.settingsMenu({strings})}>
+const SettingsButton = <TouchableOpacity onPress={() => Actions.settingsMenu({strings, order})}>
   <Image source={require('./app/icons/settings-cog.png')} style={{ width: 30, height: 30, marginRight: 10 }} />
 </TouchableOpacity>;
 
