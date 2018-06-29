@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, Linking } from 'react-native';
+import { Text, View } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
 import Button from './Button';
@@ -18,13 +18,12 @@ const AlbumDetail = ({ title, albumId }) => {
       <CardSection>
         <View style={headerContentStyle}>
           <Text style={headerTextStyle}>{title}</Text>
-          
         </View>
       </CardSection>
 
       <CardSection>
         <Button onPress={() => Actions.photoList({albumId:albumId})}>
-          See Now!
+          See Photos
         </Button>
       </CardSection>
     </Card>
@@ -37,17 +36,12 @@ const styles = {
     justifyContent: 'space-around'
   },
   headerTextStyle: {
-    fontSize: 18
+    fontSize: 18,
+    textAlign: 'center'
   },
   thumbnailStyle: {
     height: 50,
     width: 50
-  },
-  thumbnailContainerStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 10,
-    marginRight: 10
   },
   imageStyle: {
     height: 300,

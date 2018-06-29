@@ -11,30 +11,20 @@ class CommentList extends Component {
       .then(response => this.setState({ comments: response.data.comments.comment }));
   }
 
-  renderComments() {
-    return this.state.comments.map(comment => 
-      <CommentDetail key={comment.id} authorName={comment.authorname} dateCreate={(new Date(parseInt(comment.datecreate, 10))).toLocaleDateString()} content={comment._content}/>
-    );
-  }
-
   render() {
-    console.log(this.state);
-
     if (!this.state.comments) { 
 	    return (
-            <View style={{ flex: 1 }}>
-			    <Text>
-                    Loading...
-			    </Text>
-            </View>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#0062DD'}}>
+          <Text>
+            Loading...
+          </Text>
+        </View>
         );
     }
 
     return (
-        <View style={{ flex: 1 }}>
-            <ScrollView>
-                {this.renderComments()}
-            </ScrollView>
+        <View style={{ flex: 1, backgroundColor: '#0062DD' }}>
+            <FlatList data={this.state.comments} keyExtractor={(item, index) => item.id} renderItem={({item}) => <CommentDetail authorName={item.authorname} dateCreate={(new Date(parseInt(item.datecreate, 10)*1000)).toDateString()} content={item._content}/>} />
         </View>
     );
   }
