@@ -24,7 +24,7 @@ class AlbumList extends Component {
 
     return (
       <View style={{ flex: 1, backgroundColor: '#0062DD' }}>
-        <FlatList data={this.state.photoset} keyExtractor={(item, index) => item.id} renderItem={({item}) => <AlbumDetail title={item.title._content} albumId={item.id}/>} />
+        <FlatList data={this.state.photoset} keyExtractor={(item, index) => item.id} renderItem={({item}) => <AlbumDetail title={item.title._content} albumId={item.id} />} />
       </View>
     );
   }

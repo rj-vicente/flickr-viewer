@@ -4,13 +4,12 @@ import Card from './Card';
 import CardSection from './CardSection';
 import Button from './Button';
 import { Actions } from 'react-native-router-flux';
+import { STRINGS } from './Localization';
 
 const AlbumDetail = ({ title, albumId }) => {
   const {
     headerContentStyle,
-    
     headerTextStyle,
-    imageStyle
   } = styles;
 
   return (
@@ -23,7 +22,7 @@ const AlbumDetail = ({ title, albumId }) => {
 
       <CardSection>
         <Button onPress={() => Actions.photoList({albumId:albumId})}>
-          See Photos
+          {STRINGS.seePhotos}
         </Button>
       </CardSection>
     </Card>

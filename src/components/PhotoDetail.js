@@ -4,12 +4,11 @@ import Card from './Card';
 import CardSection from './CardSection';
 import Button from './Button';
 import { Actions } from 'react-native-router-flux';
+import { STRINGS } from './Localization';
 
 const PhotoDetail = ({ photoId, title, date, imageUrl }) => {
   const {
-    thumbnailStyle,
     headerContentStyle,
-    thumbnailContainerStyle,
     headerTextStyle,
     imageStyle
   } = styles;
@@ -31,13 +30,13 @@ const PhotoDetail = ({ photoId, title, date, imageUrl }) => {
 
       <CardSection>
         <Button onPress={() => Linking.openURL(imageUrl)}>
-          Larger Pic
+          {STRINGS.largerPhoto}
         </Button>
       </CardSection>
 
       <CardSection>
         <Button onPress={() => Actions.commentList({photoId:photoId})}>
-          Comments
+          {STRINGS.seeComments}
         </Button>
       </CardSection>
     </Card>
@@ -51,16 +50,6 @@ const styles = {
   },
   headerTextStyle: {
     fontSize: 18
-  },
-  thumbnailStyle: {
-    height: 50,
-    width: 50
-  },
-  thumbnailContainerStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 10,
-    marginRight: 10
   },
   imageStyle: {
     height: 300,

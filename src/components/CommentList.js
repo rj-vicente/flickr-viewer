@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import axios from 'axios';
 import CommentDetail from './CommentDetail';
+import { STRINGS } from './Localization';
 
 class CommentList extends Component {
   state = { comments: null };
@@ -16,7 +17,7 @@ class CommentList extends Component {
 	    return (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#0062DD'}}>
           <Text>
-            Loading...
+            {STRINGS.loading}
           </Text>
         </View>
         );
